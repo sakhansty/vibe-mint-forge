@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { useWallet } from '@/hooks/useWallet';
 import { ethers } from 'ethers';
-import { Gallery, RefreshCw, ExternalLink } from 'lucide-react';
+import { Grid3X3, RefreshCw, ExternalLink } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 
 const NFT_CONTRACT_ABI = [
@@ -49,7 +49,7 @@ export const NFTGallery: React.FC = () => {
       const userNFTs: NFTItem[] = [];
       
       for (const event of events) {
-        if (event.args) {
+        if ('args' in event && event.args) {
           const tokenId = event.args.tokenId.toString();
           try {
             const tokenURI = await contract.tokenURI(tokenId);
@@ -114,7 +114,7 @@ export const NFTGallery: React.FC = () => {
           <div className="flex items-center justify-between">
             <div>
               <CardTitle className="flex items-center gap-2">
-                <Gallery className="w-6 h-6 text-primary" />
+                <Grid3X3 className="w-6 h-6 text-primary" />
                 Your NFT Collection
               </CardTitle>
               <CardDescription>
@@ -138,7 +138,7 @@ export const NFTGallery: React.FC = () => {
         <Card>
           <CardContent className="pt-6">
             <div className="text-center py-8">
-              <Gallery className="w-16 h-16 mx-auto mb-4 text-muted-foreground" />
+              <Grid3X3 className="w-16 h-16 mx-auto mb-4 text-muted-foreground" />
               <p className="text-lg font-medium mb-2">Connect Your Wallet</p>
               <p className="text-muted-foreground">
                 Connect your wallet to view your NFT collection
@@ -150,7 +150,7 @@ export const NFTGallery: React.FC = () => {
         <Card>
           <CardContent className="pt-6">
             <div className="text-center py-8">
-              <Gallery className="w-16 h-16 mx-auto mb-4 text-muted-foreground" />
+              <Grid3X3 className="w-16 h-16 mx-auto mb-4 text-muted-foreground" />
               <p className="text-lg font-medium mb-2">No NFTs Found</p>
               <p className="text-muted-foreground">
                 You haven't minted any NFTs yet. Go to the Mint page to create your first NFT!
@@ -171,7 +171,7 @@ export const NFTGallery: React.FC = () => {
                   />
                 ) : (
                   <div className="w-full h-full bg-muted flex items-center justify-center">
-                    <Gallery className="w-12 h-12 text-muted-foreground" />
+<Grid3X3 className="w-12 h-12 text-muted-foreground" />
                   </div>
                 )}
               </div>
